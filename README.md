@@ -1,87 +1,188 @@
-Financial Analysis Dashboard
 
-Description
+# Financial Analysis Dashboard
 
-This project is an end-to-end financial transaction analysis built in Microsoft Power BI. It cleans and models two raw CSV files (transactions and customers), builds DAX measures for volume, value, fees, tax and year-over-year comparison, and presents the results in a dark-themed, two-page interactive dashboard titled “Finance Analysis”.
-The dashboard lets a user slice the data by Year, Occupation and Merchant Category, switch the headline metric with a Dynamic Metric selector, and drill from a high-level overview down to individual transaction records.
+## Project Description
 
-Tech Stack
+This project is an end-to-end financial transaction analysis built using Microsoft Power BI. It cleans and models two raw CSV files (transactions and customers), creates DAX measures for transaction volume, value, fees, taxes, and year-over-year (YoY) comparisons, and presents the results in a dark-themed, two-page interactive dashboard titled **Finance Analysis**.
 
-1	Tool: Microsoft Power BI Desktop
-2 Data preparation: Power Query 
-3	Calculations: DAX
-4	Source files: CSV
+The dashboard allows users to filter data by Year, Occupation, and Merchant Category, switch the headline metric using a Dynamic Metric selector, and drill down from a high-level overview to individual transaction records.
 
-Functions used
+## Tech Stack
 
-1	Power Query: Csv.Document, Table.PromoteHeaders, Table.TransformColumnTypes, Table.Distinct, Text.Trim, Number.Abs, Table.ReplaceValue, Text.Upper, Table.CombineColumns
-2	DAX: SUM, DISTINCTCOUNT, AVERAGE, CALCULATE, SAMEPERIODLASTYEAR, DIVIDE, SELECTEDVALUE, CALENDAR, MIN, MAX, NAMEOF
-Data Source
-The data comes from Kaggle and consists of two files:
-•	finance_transactions.csv (50,000 rows): transaction_id, transaction_date, account_id, customer_id, transaction_type, channel, merchant_category, amount, fee_amount, tax_amount, currency (INR), transaction_status, is_fraud, risk_score, reference_no
-•	customers.csv (5,000 rows): customer_id, gender, date_of_birth, city, state, occupation, customer_segment, annual_income, join_date, name
-Data period: 1 Jan 2023 – 30 Apr 2026. All amounts are in Indian Rupees (INR). 
-Features and Highlights
-•	Two report pages: Overview Analysis and Transaction (detail view), connected with a page navigator
-•	Five headline KPIs on every page: Total Amount, Total Transactions, Average Transaction Value, Total Fees and Total Tax
-•	Left-hand slicer panel: Year, Dynamic Metric, Occupation and Merchant Category
-•	Dynamic header card that shows the selected metric and selected year
-•	Year-over-year measures built for amount, transactions, average value, fees and tax
-•	Breakdowns by month, transaction status, customer segment, state, gender and transaction type
-•	Transaction-level table with 10 fields for audit and drill-down
-•	Cleaned data model: duplicates removed, missing fees filled, text standardised, names merged
-Business Problem and Goals
-Business problem
-A financial organization wants a centralized Finance Analytics Dashboard to monitor financial transactions, customer behaviour, fees, taxes and transaction performance across business segments and regions. The management team finds it hard to track:
-•	Overall transaction growth and financial performance
-•	Monthly trends in transaction amounts
-•	Successful vs failed transactions
-•	Customer segment contribution
-•	State-wise financial performance
-•	Transaction type profitability
-•	Gender-based customer analysis
-•	Year-over-Year (YoY) performance changes
-Goals of the dashboard
-•	Monitor key KPIs from a single page
-•	Identify high-performing customer segments and states
-•	Analyse transaction patterns and trends
-•	Track operational fees and taxes
-•	Understand customer demographics
-•	Improve financial decision-making and business strategy
-Interactive filters
-Users can filter the whole dashboard by Year, Dynamic Measure, Occupation and Merchant Category.
-KPI requirements
-•	Total Amount: total transaction amount processed, with YoY growth comparison. Measures: Total amount, PY Amount, yoy, yoy%
-•	Total Transactions: number of transactions performed and yearly volume change. Measures: Total Transaction, PY transaction, yoy%
-•	Average Transaction Value: average amount per transaction. Measures: Avg Transaction Value, yoy% avg
-•	Total Fees: total fees collected from transactions. Measures: Total Fees, Py fees, yoy% fees
-•	Total Tax: total tax generated from all transactions. Measures: Total tax, PY Tax, yoy% tax
-Chart requirements
-•	Total Amount by Month (area chart): analyse monthly amount trends and spot seasonal spikes or drops
-•	Total Amount by Transaction Status (donut chart): compare Success, Failed and Pending amounts to measure operational efficiency and success rate
-•	Total Amount by Customer Segment (horizontal bar chart): find the most valuable segments – Retail, Premium, SME, Corporate, Wealth
-•	Total Amount by State (horizontal bar chart): compare states to identify top-performing regions
-•	Transaction Type Analysis (table): compare Amount, Fees, Tax and Transaction count across 10 transaction types to understand profitability by category
-•	Total Amount by Gender (donut chart): understand Male vs Female participation
+- **Tool:** Microsoft Power BI Desktop
+- **Data Preparation:** Power Query
+- **Calculations:** DAX
+- **Data Sources:** CSV files
 
-Dashboard 2 adds a detailed grid view so users can drill down to the underlying transaction records.
-Dashboard Walkthrough (Page-wise)
-Page 1 – Overview Analysis
-•	Left panel: page navigator and four slicers – Year, Dynamic Metric, Occupation, Merchant Category.
-•	Header and KPI cards: dashboard title, dynamic metric/year card, and five KPIs – Total Amount, Total Transaction, Avg Transaction Value, Total Fees, Total Tax.
-•	Total Amount by Month (area chart): monthly transaction value trend, used to check seasonality and growth.
-•	Transaction Status (donut chart): share of value that is Success, Failed or Pending.
-•	Customer Segment (bar chart): value by Retail, Premium, SME, Corporate and Wealth.
-•	State (bar chart): value by customer state to show geographic concentration.
-•	Transaction Type Analysis (table): amount, fees, tax and transaction count for each of the 10 transaction types.
-•	Gender (donut chart): split of transaction value between Female and Male customers.
-Page 2 – Transaction
-•	Same navigation panel, slicers, header and five KPI cards as Page 1, so filters stay consistent.
-•	Transaction detail table: transaction ID, date, type, status, gender, customer segment, state, amount, fees and tax – for row-level checking and drill-down.
-Business Impact and Insights
-•	Scale and fee yield: The business processed ₹455.53 million (₹45.55 crore) across 50,000 transactions, with an average transaction value of ₹9,110.68. Fees were ₹7.26 lakh (about 0.16% of value) and tax was ₹1.31 lakh (about 0.03%), so fee income is small compared with the money moved.
-•	Growth is flat and not seasonal: Yearly value was ₹137.07M in 2023, ₹135.62M in 2024 (−1.1%) and ₹137.53M in 2025 (+1.4%), with about 15,000 transactions every year. 2026 has only four months of data, so compare like-for-like: Jan–Apr 2026 was ₹45.32M against ₹45.86M in Jan–Apr 2025 (−1.2%). Monthly value stays in a narrow ₹10–12.5M band with no clear peak season.
-•	Two products drive most of the value: Loan EMI (₹130.93M, 28.7%) and Transfer (₹120.63M, 26.5%) together make up 55.2% of value from only 35% of transactions. Adding Deposit and Investment takes the top four to 81.1%. These types have an average ticket of about ₹14,000, versus about ₹5,000 or less for Card Payment, Bill Payment, Withdrawal and the remaining types.
-•	14.6% of transaction value did not complete: Failed transactions total ₹47.46M (10.4% of value, 5,096 transactions) and Pending ones ₹19.06M (4.2%). Failed transactions also have a higher average value (₹9,312) than successful ones (₹9,075). In addition, ₹75,458 of fees (about 10% of all fees) is recorded against failed transactions, which is worth reviewing.
-•	Retail customers carry the business: Retail contributes 54.5% of value, followed by Premium (18.5%), SME (15.8%), Corporate (6.8%) and Wealth (4.5%). Average ticket size is almost the same in every segment (about ₹9,000–₹9,150), so Corporate and Wealth customers are not transacting larger amounts; value follows the number of customers in each segment.
-•	Geographic concentration: Maharashtra leads with 15.0% of value (₹68.29M), followed by Karnataka (11.6%) and Gujarat (11.0%); these three states account for 37.6% of the total. Telangana and Chandigarh are the smallest at about 4% each. Female customers account for 51.7% of value and Male customers for 48.3%.
+## Functions Used
+
+- **Power Query:** `Csv.Document`, `Table.PromoteHeaders`, `Table.TransformColumnTypes`, `Table.Distinct`, `Text.Trim`, `Number.Abs`, `Table.ReplaceValue`, `Text.Upper`, `Table.CombineColumns`
+- **DAX:** `SUM`, `DISTINCTCOUNT`, `AVERAGE`, `CALCULATE`, `SAMEPERIODLASTYEAR`, `DIVIDE`, `SELECTEDVALUE`, `CALENDAR`, `MIN`, `MAX`, `NAMEOF`
+
+## Data Source
+
+The dataset was sourced from Kaggle and consists of two files:
+
+- **finance_transactions.csv** — 50,000 rows containing transaction details such as transaction ID, date, account ID, customer ID, transaction type, channel, merchant category, amount, fees, taxes, currency, transaction status, fraud indicator, risk score, and reference number.
+- **customers.csv** — 5,000 rows containing customer details such as customer ID, gender, date of birth, city, state, occupation, customer segment, annual income, joining date, and name.
+
+**Data Period:** January 1, 2023 – April 30, 2026  
+**Currency:** Indian Rupees (INR)
+
+## Features and Highlights
+
+- Two report pages: Overview Analysis and Transaction Detail View.
+- Five headline KPIs on both pages:
+  - Total Amount
+  - Total Transactions
+  - Average Transaction Value
+  - Total Fees
+  - Total Tax
+- Interactive slicers for Year, Dynamic Metric, Occupation, and Merchant Category.
+- Dynamic header card displaying the selected metric and year.
+- Year-over-year (YoY) comparisons for transaction amount, transaction count, average value, fees, and tax.
+- Transaction breakdowns by month, transaction status, customer segment, state, gender, and transaction type.
+- Transaction-level detail table with 10 fields for audit and drill-down.
+- Data cleaning, including duplicate removal, missing fee handling, text standardization, and merging customer names.
+
+## Business Problem and Goals
+
+### Business Problem
+
+A financial organization needs a centralized Finance Analytics Dashboard to monitor financial transactions, customer behavior, fees, taxes, and transaction performance across business segments and regions.
+
+The management team faces challenges in tracking:
+
+- Overall transaction growth and financial performance.
+- Monthly trends in transaction amounts.
+- Successful, failed, and pending transactions.
+- Customer segment contribution.
+- State-wise financial performance.
+- Transaction type performance.
+- Gender-based customer analysis.
+- Year-over-year performance changes.
+
+### Goals of the Dashboard
+
+- Monitor key financial KPIs in one place.
+- Identify high-performing customer segments and states.
+- Analyze transaction patterns and trends.
+- Track operational fees and taxes.
+- Understand customer demographics.
+- Support better financial decision-making and business strategy.
+
+## Interactive Filters
+
+Users can filter the dashboard using:
+
+- **Year**
+- **Dynamic Metric**
+- **Occupation**
+- **Merchant Category**
+
+## KPI Requirements
+
+- **Total Amount:** Total transaction amount processed, with YoY growth comparison.
+- **Total Transactions:** Number of transactions performed and yearly volume changes.
+- **Average Transaction Value:** Average amount per transaction.
+- **Total Fees:** Total fees collected from transactions.
+- **Total Tax:** Total tax generated from transactions.
+
+## Chart Requirements
+
+- **Total Amount by Month — Area Chart:** Analyzes monthly transaction trends and identifies seasonal spikes or drops.
+- **Total Amount by Transaction Status — Donut Chart:** Compares successful, failed, and pending transaction amounts.
+- **Total Amount by Customer Segment — Horizontal Bar Chart:** Identifies the most valuable segments: Retail, Premium, SME, Corporate, and Wealth.
+- **Total Amount by State — Horizontal Bar Chart:** Compares states to identify top-performing regions.
+- **Transaction Type Analysis — Table:** Compares amount, fees, tax, and transaction count across 10 transaction types.
+- **Total Amount by Gender — Donut Chart:** Shows transaction value distribution between male and female customers.
+
+The second dashboard page provides a detailed grid view for drilling down into individual transaction records.
+
+## Dashboard Walkthrough
+
+### Page 1 — Overview Analysis
+
+- **Navigation Panel:** Page navigation and four slicers for Year, Dynamic Metric, Occupation, and Merchant Category.
+- **Header and KPI Cards:** Dashboard title, dynamic metric/year card, and five KPIs.
+- **Monthly Trend:** Area chart showing transaction value trends and growth.
+- **Transaction Status:** Donut chart showing the share of transaction value classified as Success, Failed, or Pending.
+- **Customer Segment:** Bar chart comparing transaction value across Retail, Premium, SME, Corporate, and Wealth.
+- **State Analysis:** Bar chart showing transaction value by customer state.
+- **Transaction Type Analysis:** Table comparing amount, fees, tax, and transaction count across 10 transaction types.
+- **Gender Analysis:** Donut chart showing transaction value distribution between female and male customers.
+
+### Page 2 — Transaction Details
+
+- Consistent navigation, slicers, header, and KPI cards.
+- Transaction-level detail table containing:
+  - Transaction ID
+  - Transaction Date
+  - Transaction Type
+  - Transaction Status
+  - Gender
+  - Customer Segment
+  - State
+  - Amount
+  - Fees
+  - Tax
+
+This page supports detailed transaction checking and drill-down analysis.
+
+## Business Impact and Key Insights
+
+### 1. Transaction Scale and Fee Yield
+
+- Total transaction value: **₹455.53 million (₹45.55 crore)**.
+- Total transactions: **50,000**.
+- Average transaction value: **₹9,110.68**.
+- Total fees: **₹7.26 lakh**, approximately 0.16% of transaction value.
+- Total tax: **₹1.31 lakh**, approximately 0.03% of transaction value.
+
+Fee income is relatively small compared with the total transaction value processed.
+
+### 2. Growth Trends
+
+- Transaction value was ₹137.07 million in 2023, ₹135.62 million in 2024, and ₹137.53 million in 2025.
+- Year-over-year growth was -1.1% in 2024 and +1.4% in 2025.
+- Transaction volume remained close to 15,000 transactions annually.
+- January–April 2026 recorded ₹45.32 million compared with ₹45.86 million in the same period of 2025, a decline of 1.2%.
+- Monthly transaction value generally remained between ₹10 million and ₹12.5 million, with no clear seasonal peak.
+
+### 3. Transaction Type Contribution
+
+- Loan EMI contributed ₹130.93 million, or 28.7% of total transaction value.
+- Transfers contributed ₹120.63 million, or 26.5%.
+- Together, these two transaction types accounted for 55.2% of total value while representing 35% of transactions.
+- Adding Deposits and Investments brought the contribution of the top four transaction types to 81.1%.
+- These transaction types had an average transaction value of approximately ₹14,000, compared with around ₹5,000 or less for several other transaction types.
+
+### 4. Transaction Status Analysis
+
+- Failed transactions accounted for ₹47.46 million, or 10.4% of total transaction value, across 5,096 transactions.
+- Pending transactions accounted for ₹19.06 million, or 4.2% of total value.
+- Together, failed and pending transactions represented 14.6% of transaction value.
+- Failed transactions had an average value of ₹9,312, compared with ₹9,075 for successful transactions.
+- ₹75,458 in fees was recorded against failed transactions, representing approximately 10% of total fees. This may require further review.
+
+### 5. Customer Segment Analysis
+
+- Retail contributed 54.5% of total transaction value.
+- Premium contributed 18.5%.
+- SME contributed 15.8%.
+- Corporate contributed 6.8%.
+- Wealth contributed 4.5%.
+
+Average transaction values were similar across segments, ranging from approximately ₹9,000 to ₹9,150. This suggests that differences in total value are more closely related to transaction volume than to average transaction size.
+
+### 6. Geographic and Gender Analysis
+
+- Maharashtra contributed 15.0% of total transaction value, amounting to ₹68.29 million.
+- Karnataka contributed 11.6%.
+- Gujarat contributed 11.0%.
+- These three states accounted for 37.6% of total transaction value.
+- Telangana and Chandigarh were among the smallest contributors, at approximately 4% each.
+- Female customers accounted for 51.7% of transaction value, while male customers accounted for 48.3%.
+
+### 7.Snapshots
+
