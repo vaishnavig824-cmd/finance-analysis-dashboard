@@ -185,4 +185,6 @@ Average transaction values were similar across segments, ranging from approximat
 - Female customers accounted for 51.7% of transaction value, while male customers accounted for 48.3%.
 
 ### 7.Snapshots
+[https://github.com/vaishnavig824-cmd/finance-analysis-dashboard/blob/main/Snapshots%20of%20the%20Dashboard/Screenshot%201%20Finance.png](#Snapshot1)
+[
 
