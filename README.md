@@ -186,5 +186,6 @@ Average transaction values were similar across segments, ranging from approximat
 
 ### 7.Snapshots
 [Snapshot1](https://github.com/vaishnavig824-cmd/finance-analysis-dashboard/blob/main/Snapshots%20of%20the%20Dashboard/Screenshot%201%20Finance.png)
-[Snapshot2](
+[Snapshot2](https://github.com/vaishnavig824-cmd/finance-analysis-dashboard/blob/main/Snapshots%20of%20the%20Dashboard/Screenshot%202%20Finance.png)
+
 
