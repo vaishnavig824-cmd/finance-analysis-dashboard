@@ -1,16 +1,21 @@
 Financial Analysis Dashboard
 
 Description
+
 This project is an end-to-end financial transaction analysis built in Microsoft Power BI. It cleans and models two raw CSV files (transactions and customers), builds DAX measures for volume, value, fees, tax and year-over-year comparison, and presents the results in a dark-themed, two-page interactive dashboard titled “Finance Analysis”.
 The dashboard lets a user slice the data by Year, Occupation and Merchant Category, switch the headline metric with a Dynamic Metric selector, and drill from a high-level overview down to individual transaction records.
+
 Tech Stack
-•	Tool: Microsoft Power BI Desktop
-•	Data preparation: Power Query 
-•	Calculations: DAX
-•	Source files: CSV
+
+1	Tool: Microsoft Power BI Desktop
+2 Data preparation: Power Query 
+3	Calculations: DAX
+4	Source files: CSV
+
 Functions used
-•	Power Query: Csv.Document, Table.PromoteHeaders, Table.TransformColumnTypes, Table.Distinct, Text.Trim, Number.Abs, Table.ReplaceValue, Text.Upper, Table.CombineColumns
-•	DAX: SUM, DISTINCTCOUNT, AVERAGE, CALCULATE, SAMEPERIODLASTYEAR, DIVIDE, SELECTEDVALUE, CALENDAR, MIN, MAX, NAMEOF
+
+1	Power Query: Csv.Document, Table.PromoteHeaders, Table.TransformColumnTypes, Table.Distinct, Text.Trim, Number.Abs, Table.ReplaceValue, Text.Upper, Table.CombineColumns
+2	DAX: SUM, DISTINCTCOUNT, AVERAGE, CALCULATE, SAMEPERIODLASTYEAR, DIVIDE, SELECTEDVALUE, CALENDAR, MIN, MAX, NAMEOF
 Data Source
 The data comes from Kaggle and consists of two files:
 •	finance_transactions.csv (50,000 rows): transaction_id, transaction_date, account_id, customer_id, transaction_type, channel, merchant_category, amount, fee_amount, tax_amount, currency (INR), transaction_status, is_fraud, risk_score, reference_no
